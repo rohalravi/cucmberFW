@@ -1,0 +1,43 @@
+# Maven
+# Build your Java project and run tests with Apache Maven.
+# Add steps that analyze code, save build artifacts, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/java
+
+trigger:
+- "*"
+
+pool:
+  vmImage: 'macOS-latest'
+
+variables:
+  testProfile: $[format('-Dspring.profiles.active=qatabchrome')]
+  testFilters: $[format('-Dcucumber.filter.tags="@regression"')]
+
+schedules:
+  - cron: "5 18 * * *"
+    displayName: Daily midnight smoke test
+    branches:
+      include:
+        - main
+    always : true
+
+steps:
+  - task: JavaToolInstaller@0
+    displayName: 'JDK 11'
+    inputs:
+      versionSpec: '11'
+      jdkArchitectureOption: 'x64'
+      jdkSourceOption: 'PreInstalled'
+
+  - task: Maven@3
+    displayName: 'B2B Web - Test Validation'
+    inputs:
+      mavenPomFile: 'b2b-web/pom.xml'
+      mavenOptions: '-Xmx3072m'
+      javaHomeOption: 'JDKVersion'
+      #jdkVersionOption: '11'
+      #jdkArchitectureOption: 'x64'
+      publishJUnitResults: true
+      testResultsFiles: '**/results/cucumber.xml'
+      goals: 'test'
+      options: '$(testProfile) $(testFilters)'

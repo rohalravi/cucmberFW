@@ -1,0 +1,12 @@
+{
+    "APP_NAME": [
+        {
+            "pageName": "Login",
+            "url": "https://dukkan-senin.dev.pepsico.com/"
+        },
+        {
+            "pageName": "Home",
+            "url": "https://dukkan-senin.dev.pepsico.com/home"
+        }      
+    ]
+}

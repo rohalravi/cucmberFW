@@ -1,0 +1,6 @@
+content from _src/docs/asciidoc/subdir/c.adoc_.
+
+[example]
+--
+I am from _c.adoc
+--

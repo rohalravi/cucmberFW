@@ -1,0 +1,90 @@
+= Steps - How to work as test developer in B2b mobile test automation
+
+
+#The purpose of this document is to help an individual to understand that how to work as test development in B2b mobile test automation.#
+
+
+1. Clone repository
+
+If we are doing work first time in B2b mobile test automation. We have to clone existing repository from Azure Devops.
+
+============================================
+command: git clone <path of repository>
+============================================
+
+2: In B2b mobile test automation, we have to follow branch name as user story number followed by US.
+
+   Example- if User story no. is 4455481 then branch name should be US4455281.
+
+3: Always create a new branch from main
+
+=====================================================================
+   Command
+     1- git checkout main
+     2- git checkout -b ＜new-branch name＞
+=====================================================================     
+     The above git checkout command accepts a -b argument that acts as a convenience method which will create the new branch and immediately switch to it.
+
+
+4: After creating new branch from main, we will start coding according to the userstory provided.
+
+   Follow: CodingGuidelines.adoc
+
+5: Steps to push code to AzureDevOps
+
+   * Check the status of working tree
+   * Add changes in local repository
+   * Commit the changes
+   * Push changes in remote repository
+
+*A. Check the status of working tree*
+
+You have to execute the code below to check the status of the working tree.
+
+=============================
+ command : git status
+=============================
+
+*B. Add changes in local repository*
+
+* If you made any changes then first you have to add these changes in the local repository and stage them for the commit. Below command will help you to do it.
+
+=============================
+ command : git add .
+=============================
+
+* Use the code below to add an individual file.
+
+=========================
+ command : git add <file>
+=========================
+
+* Commit the changes
+
+Now it’s time to commit the changes and prepare it for the remote repository so we can push it.
+
+=============================================
+   command : git commit -m "new changes"
+=============================================
+
+Note: Pull the latest code after commiting the changes so that Merge conflicts can be resolved 
+   
+=============================================   
+   command : git pull origin main
+=============================================   
+
+*C. Push changes in remote repository*
+
+At last, execute the command below to push the changes in remote repository.
+
+=================================================
+   command : git push origin <branch name>
+=================================================
+
+6: Create pull request in Azure DevOps to merge your local code to main.
+
+Note: You need to add work items and reviewer when you create your PR.
+
+7: After creating the pull request, reviewers will review and approve your PR.
+
+8: When your PR has been reviewed and Approved by two reviewers, select Complete at upper right in the PR and then you need to delete your branch from Azure DevOps.

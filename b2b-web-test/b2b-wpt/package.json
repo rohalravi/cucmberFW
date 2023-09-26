@@ -1,0 +1,28 @@
+{
+  "name": "b2b-wpt",
+  "version": "1.0.0",
+  "description": "PepsiCo Retail 360 Web Performance Calculator",
+  "main": "index.js",
+  
+  "scripts": {
+
+    "start": "ts-node ./auditb2bweb.ts"
+  },
+  "author": "Pushpendra Kumar",
+  "devDependencies": {
+    "@lhci/cli": "^0.10.0",
+    "install": "^0.13.0",
+    "npm": "^9.2.0",
+    "ts-node": "^10.0.0",
+    "tslint": "^5.12.1",
+    "typescript": "^3.9.10"
+  },
+  "dependencies": {
+    "-": "^0.0.1",
+    "chrome-launcher": "^0.14.0",
+    "lighthouse": "^9.6.8",
+    "node": "^20.1.0",
+    "puppeteer": "^18.0.5",
+    "save-dev": "^0.0.1-security"
+  }
+}

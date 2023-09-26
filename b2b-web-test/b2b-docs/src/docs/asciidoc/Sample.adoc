@@ -1,0 +1,92 @@
+= PepsiCo B2B Web and Mobile Testing
+Pushpendra  <pushpendra.kumar@centricconsulting.com> v1.0, 04-25-2022
+= :example-caption!:
+ifndef::imagesdir[:imagesdir: images]
+ifndef::sourcedir[:sourcedir: ../../main/java]
+
+
+<<<
+[.thumb]
+image::PepsiCo.png[scaledwidth=20%]
+The purpose of testing guide is to help the individual to understand the echo system of b2b testing.
+
+== Introduction
+
+This project is about 'within project documentation', the details of how to use documentation using adoc.
+Make a meaningful and ready to ship documentation for your project work
+
+*1. The process guidelines.*
+--
+_2. Coding standards._
+--
+#3. Peer review process for all project work.#
+
+NOTE: Some additional info...
+
+TIP: Pro tip...
+
+IMPORTANT: Don't forget...
+WARNING: Watch out for...
+
+CAUTION: Ensure that...
+
+<<<
+[.thumb]
+image::PepsiCo.png[scaledwidth=20%]
+
+== Source Code
+
+[source,java]
+. This is the technique to show the project code from a .java file
+----
+include::{sourcedir}/example/StringUtils.java[tags=contains,indent=0]
+----
+<1> return statement
+
+This page was built by the following command:
+
+ $ mvn
+
+<<<
+[.thumb]
+image::PepsiCo.png[scaledwidth=20%]
+
+== Attributes
+
+.Built-in
+asciidoctor-version:: {asciidoctor-version}
+safe-mode-name:: {safe-mode-name}
+docdir:: {docdir}
+docfile:: {docfile}
+imagesdir:: {imagesdir}
+
+.Custom
+sourcedir:: {sourcedir}
+
+.Table Name
+[cols="1,1,1,1"]
+[%autowidth]
+|===
+|Col 1|Col 2|Col 3|Col 4
+|Data 1|Data 2|Data3| Data 4
+|===
+
+
+<<<
+[.thumb]
+image::PepsiCo.png[scaledwidth=20%]
+
+== Includes
+
+.include::subdir/_b.adoc[]
+====
+include::subdir/_b.adoc[]
+====
+
+WARNING: Includes can be tricky!
+
+== Source Code and Syntax Highlighting
+
+This section shows some code highlighting examples.
+
+include::subdir/_code_examples.adoc[]

@@ -1,0 +1,58 @@
+= Steps - How to run the test cases locally on build server and on pipeline in B2b mobile test automation
+
+
+The purpose of this document is to help an individual to understand that how to run the test cases locally on build server and on pipeline in B2b mobile test automation.
+
+#How to run the test cases locally on build server in B2b mobile test automation.#
+
+1: Always run maven lifecycle before executing your testcases, Maven lifecycle helps to run our testcases smoothly.
+
+*Maven Commands:*
+
+Three are crucial for Selenium test automation. There are clean, compile, and tests.
+
+   * *Clean*- It would clean the target folder, i.e. the folder where the previous build’s libraries, build files(war, tar or jar files), reports, output files, etc are saved. On executing mvn -clean this target folder will be deleted.
+
+   * *Compile*- It compiles the source code, converts the .java files to .class and stores the classes in target/classes folder.
+
+   * *Test*- It will simply run the test without creating any deployment file.
+
+
+2: Ways of running a feature file from Command Line on build server:- 
+   
+   A. One way If you are using Maven and want to run a subset of scenarios tagged with @tagName.
+
+   * command: mvn clean test -D cucumber.filter.tags="@tagName"
+
+   B. Second way how to run single feature file from the command line, then use the below syntax:-
+
+   * command: mvn test -Dcucumber.options="complete feature file path"
+
+      eg:  mvn test -Dcucumber.options="src/test/resources/features/CucumberTagsExample.feature"
+
+   C. If we want to run a single Scenario from the command line and no tag is assigned to that scenario, this is how we specify
+
+   * command: mvn test -Dcucumber.options="complete feature file path:line number", Include feature file path and line number of the testCase.
+   
+     eg: mvn test -Dcucumber.options="src/test/resources/features/CucumberTagsExample.feature:12"
+
+         
+#How to run the test cases using pipeline in B2b mobile test automation#
+
+1: Sign-in to your Azure DevOps organization and go to your project.
+
+2: Go to Pipelines 
+
+3: Select All -> goto b2b-portal-test ->  goto macmini-b2b-mobile-regression
+
+4: Tap on Run pipeline from above right corner blue botton.
+
+5: If you want to run pipeline according to your created branch name then follow below steps:- 
+  
+   Tap on Run pipeline -> Select your branch from dropdown -> Tap on run.
+
+
+
+
+   
+

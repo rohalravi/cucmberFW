@@ -1,0 +1,19 @@
+=== Java example
+
+[source,java]
+.Inline Java code
+----
+/**
+ * This is a Java "Hello world" example.
+ * @param args arguments
+ *
+ * @since 1.3
+ */
+public class Test {
+  public static void main(String[] args) {
+    System.out.println("Hello World!"); <1>
+  }
+}
+----
+<1> Use this place for some meaningful usage about above code
+

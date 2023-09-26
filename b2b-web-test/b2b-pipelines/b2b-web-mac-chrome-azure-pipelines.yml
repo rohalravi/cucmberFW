@@ -1,0 +1,68 @@
+# Maven
+# Build your Java project and run tests with Apache Maven.
+# Add steps that analyze code, save build artifacts, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/java
+
+trigger:
+- None
+
+pool:
+  vmImage: 'macOS-latest'
+
+variables:
+  testProfile: $[format('-Dspring.profiles.active=qawebchrome')]
+  regression: $[format('-Dcucumber.filter.tags="@regression"')]
+  smoke: $[format('-Dcucumber.filter.tags="@smoke"')]
+
+schedules:
+  - cron: "5 18 * * *"
+    displayName: Scheduled Test Execution
+    branches:
+      include:
+        - main
+    always : true
+
+jobs:
+  - job: Smoke
+    displayName: 'Smoke Test Execution'
+    steps:
+    - task: Maven@3
+      inputs:
+        mavenPomFile: 'b2b-web/pom.xml'
+        mavenOptions: '-Xmx3072m'
+        javaHomeOption: 'JDKVersion'
+        jdkVersionOption: '11'
+        publishJUnitResults: true
+        testResultsFiles: '**/results/cucumber.xml'
+        goals: 'test'
+        options: '$(smoke)'
+    - task: PublishTestResults@2
+      enabled: false
+      displayName: Publish Test Results
+      inputs:
+        testResultsFormat: 'JUnit'
+        testResultsFiles: '**/test_results/cucumber.xml'
+        mergeTestResults: true
+ 
+  - job: Regression
+    dependsOn: Smoke
+    condition: always()
+    displayName: ' Regression Suite Execution'
+    steps:
+    - task: Maven@3
+      inputs:
+        mavenPomFile: 'b2b-web/pom.xml'
+        mavenOptions: '-Xmx3072m'
+        javaHomeOption: 'JDKVersion'
+        jdkVersionOption: '11'
+        publishJUnitResults: true
+        testResultsFiles: '**/results/cucumber.xml'
+        goals: 'test'
+        options: '$(regression)'
+    - task: PublishTestResults@2
+      enabled: false
+      displayName: Publish Test Results
+      inputs:
+        testResultsFormat: 'JUnit'
+        testResultsFiles: '**/test_results/cucumber.xml'
+        mergeTestResults: true

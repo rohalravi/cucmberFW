@@ -1,0 +1,115 @@
+= Debugging in VS Code
+Saurabh  <saurabh.kumar@centricconsulting.com> v1.0, 11-14-2022
+= :example-caption!:
+ifndef::imagesdir[:imagesdir: images]
+ifndef::sourcedir[:sourcedir: ../../main/java]
+
+
+<<<
+[.thumb]
+image::PepsiCo.png[scaledwidth=20%]
+This guide would help to debug Cucumber and Java based automation code on VSCode
+
+== Introduction
+
+Debugging is important part of your daily coding activities, it not only helps in analysing the root cause of an issue but also helps developers to amend and validate their changes at the runtime.
+
+*Pre-requisites*
+
+Your VS code must have extensions for running Java and Cucumber based projects most common ones are
+
+1. Debugger for Java
+
+2. Extension Pack for Java
+
+3. Cucumber Full
+
+4. Place the following configuration in Settings (Click Settings 'Gear Icon' in left bottom of Activity Panel 
+-> Click on 'Settings' -> Go to 'Extensions' on the right panel -> Cucumber Auto Complete -> Under 'Custom Parameters, click on 'Edit Settings in Json')
+----
+    "cucumberautocomplete.steps": [
+            "**/*Steps.java"
+        ],
+        "cucumberautocomplete.syncfeatures": "**/*.feature"
+----
+
+Also, you must have some basic understanding of using Java based debugger on IDE such as eclipse or IntelliJ. 
+
+<<<
+[.thumb]
+image::PepsiCo.png[scaledwidth=20%]
+
+
+
+== Steps
+
+1.Firstly, in your TestRunner class you should include the tag Name of the scenario you wish to debug, if tag name has multiple test scenarios, you can give a unique tag name for you scenario in Cucumber options as shown below:- 
+----
+
+
+    @RunWith(Cucumber.class)
+    @CucumberOptions(
+            features = "classpath:features",
+            plugin = {"pretty", "html:results/cucumber-reports.html", "json:results/cucumber.json", "junit:results/cucumber.xml"},
+            glue = "com.pepsico.connectados",
+            tags = "@debug")
+
+
+
+----
+
+Alternatively, you can also give path of feature file for features in Cucumber options for example:-
+----
+
+
+    @CucumberOptions(
+                features = "classpath:features/web/WebLogin.feature",
+                plugin = {"pretty", "html:results/cucumber-reports.html", "json:results/cucumber.json", "junit:results/cucumber.xml"},
+                glue = "com.pepsico.connectados",
+                tags = "@smoke")
+
+----
+
+
+2.Now add break points in step definition file or any code block for which you want test execution to pause, you can add break points in a similar way i.e click on the beginning of line of code, a red dot should be higlighted 
+
+
+<<<
+[.thumb]
+image::PepsiCo.png[scaledwidth=20%]
+
+
+
+
+3.Now go to Testing Menu either from Activity Bar or click on 'View' and select 'Testing'.
+
+4.In the testing menu, you'll find 'TestRunner' for your project, if you have multiple projects, there shall be multiple TestRunner classes.
+
+5.Now hover on the 'TestRunner' class, click on 'debug' button, execution shall start in 'Debug' mode and it would pause at your defined breakpoint
+
+6.Once debug session starts, the 'Debug Toolbar' will appear on the top of editor also you can see the variables, watch, call stack etc.
+
+*Debug Actions*
+
+Continue / Pause F5:
+Continue: Resume normal program/script execution (up to the next breakpoint).
+Pause: Inspect code executing at the current line and debug line-by-line.
+
+Step Over / F10:
+Execute the next method as a single command without inspecting or following its component steps.
+
+Step Into / F11:
+Enter the next method to follow its execution line-by-line.
+
+Step Out / Shift+F11
+When inside a method or subroutine, return to the earlier execution context by completing remaining lines of the current method as though it were a single command.
+
+Restart / Ctrl+Shift+F5
+Terminate the current program execution and start debugging again using the current run configuration.
+
+Stop / Shift+F5
+Terminate the current program execution.
+
+More information regarding debugging can be found at https://code.visualstudio.com/docs/editor/debugging
+
+

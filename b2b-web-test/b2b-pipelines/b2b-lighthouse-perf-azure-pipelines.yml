@@ -1,0 +1,50 @@
+# Node.js
+# Build a general Node.js project with npm.
+# Add steps that analyze code, save build artifacts, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
+
+trigger:
+- none
+
+pool:
+  vmImage: 'macOS-latest'
+
+schedules:
+  - cron: "*/15 * * * *"
+    displayName: Lihthouse Analysis
+    branches:
+      include:
+        - main
+    always : true
+
+jobs:
+  - job: LighthouseAnalysis
+    timeoutInMinutes: 180
+    displayName: ' Web Vitals for B2B Web'
+    steps:
+    - task: NodeTool@0
+      inputs:
+        versionSpec: '16.x'
+      displayName: 'Install Node.js'
+      env:
+        NODE_OPTIONS: --max_old_space_size=16384
+
+    - script: |
+       echo '$(system.defaultworkingdirectory)'
+       cd b2b-wpt
+       npm install
+       npm start
+      displayName: 'B2B Web Lighthouse Analysis'
+    - task: CopyFiles@2
+      displayName: 'Copying Lighthouse reports'
+      inputs:
+          SourceFolder: '$(system.defaultworkingdirectory)'
+          contents: '**/reports/**'
+          targetFolder: $(Build.ArtifactStagingDirectory)
+      condition: always()
+    - task: PublishBuildArtifacts@1
+      displayName: 'Publishing Lighthouse reports'
+      inputs:
+          pathToPublish: $(Build.ArtifactStagingDirectory)
+          artifactName: LighthouseReport
+      condition: always()      

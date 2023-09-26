@@ -1,0 +1,61 @@
+= Framework strategy for B2b mobile test automation
+
+We use Maven, Appium, Spring boot 2, Cucumber(BDD Framework) in this framework.
+
+*1: _Maven_ :*
+Maven is a project management and comprehension tool that provides developers a complete build lifecycle framework.
+
+
+*2: _Appium_ :*
+Appium is an open-source framework that allows QAs to conduct automated app testing on different platforms like Android, iOS, and Windows.
+
+*3: _Spring boot 2_ :*
+The Spring Framework provides a comprehensive programming and configuration model for modern Java-based enterprise applications - on any kind of deployment platform.
+
+*4: _Cucumber(BDD Framework)_ :*
+Cucumber is a testing approach which supports Behavior Driven Development (BDD). It explains the behavior of the application in a simple English text using Gherkin language.
+
+
+#B2b mobile test automation framework Folder structure:-#
+
+*_Maintain POM.xml inside B2B and Core folder in B2B Mobile automation framework:-_* 
+
+The pom.xml file contains information of project and configuration information for the maven to build the project such as dependencies, build directory, source directory, test source directory, plugin, goals etc.
+
+Note:- Maven reads the pom.xml file, then executes the goal.
+
+Project is maintained by two Modules :-
+
+1-> B2B Module
+
+2-> core Module
+
+
+*_1: B2B Module, we have two folder src and target folder, Inside src folder, we maintain "java and resource" folder_*
+
+A: We maintain "feature folder" inside "resource folder"
+=========================================================================================
+   * A feature file is usually a common file which stores feature, scenarios, and feature  description to be tested, The extension of the feature file is ".feature". Each functionality of the appilcation must have a separate feature file.
+=========================================================================================
+
+B: We maintain "steps and pageObjects folders" inside "java folder"
+
+ This Module contains the source code. If a tester is working on b2b project then he will develop the source code in java folder.
+===========================================================================================
+   * Step definition maps the Test Case Steps in the feature files(introduced by Given/When/Then) to code. which executes the steps on Application Under Test and check the outcomes against expected results.
+
+   * Page object model (POM) where all elements of the Application and the method that operate on these elements are maintained inside a class file.
+===========================================================================================
+
+C: Inside target folder, we maintain logs, cucumber reports and plugins.
+
+
+*_2: Core Module, we maintain:  Appium server, Mobile capabilities, Mobile waits, Mobile driver factory, Environment properties, Spring active profiles._*
+
+
+
+
+
+
+
+
